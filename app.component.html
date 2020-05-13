@@ -1,0 +1,98 @@
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<h3>Job Registration Form</h3>
+<div class="container">
+<form #form="ngForm">
+  <div class="form-group">
+<input required
+ ngModel 
+ name="userName"
+#userName="ngModel" 
+(change)="displayMessage(userName)" 
+pattern="[A-Za-z]+"
+minlength="3"
+maxlength="20"
+id="userName" 
+type="text" 
+class="form-control" 
+placeholder="Enter your name">
+<div class="alert alert-danger" *ngIf="!userName.valid && userName.touched">
+  <div *ngIf="userName.errors.required">Please enter your Username</div>
+  <div *ngIf="userName.errors.minlength">Please enter your username with atleast 3 characters</div>
+  <div *ngIf="userName.errors.pattern">Please enter a valid Username</div>
+</div>
+</div>
+
+<div class="form-group" >
+  <input required
+  ngModel 
+  name="userEmail"
+ #userEmail="ngModel" 
+ (change)="displayMessage(userEmail)" 
+ pattern="^(.+)@(.+)$"
+ id="userEmail" 
+ type="email" 
+ class="form-control" 
+ placeholder=" Enter your Email">
+ <div class="alert alert-danger" *ngIf="!userEmail.valid && userEmail.touched">
+  <div *ngIf="userEmail.errors.required">Please enter your email</div>
+   <div *ngIf="userEmail.errors.pattern">Please enter a valid Email Address</div>
+</div>
+</div>
+<div class="form-group" >
+  <input required
+  ngModel 
+  name="userAge"
+ #userAge="ngModel" 
+ (change)="displayMessage(userAge)" 
+ pattern="[0-9]{2}"
+ minlength=""
+ id="userAge" 
+ type="number" 
+ class="form-control" 
+ placeholder="Enter your Age">
+ <div class="alert alert-danger" *ngIf="!userAge.valid && userAge.touched">
+  <div *ngIf="userAge.errors.required">Please enter your age</div>
+   <div *ngIf="userAge.errors.pattern">Please enter a valid Age</div>
+</div>
+</div>
+
+<div class="form-group" >
+  <input required
+  ngModel 
+  name="userNumber"
+ #userNumber="ngModel" 
+ (change)="displayMessage(userNumber)" 
+ pattern="[0-9]{10}"
+ minlength=""
+ id="userNumber" 
+ type="number" 
+ class="form-control" 
+ placeholder="Enter your Mobile No.">
+ <div class="alert alert-danger" *ngIf="!userNumber.valid && userNumber.touched">
+  <div *ngIf="userNumber.errors.required">Please enter your Mobile No.</div>
+   <div *ngIf="userNumber.errors.pattern">Please enter a valid Number</div>
+</div>
+</div>
+
+<div class="form-group" >
+  <select  >
+    <option value="city">Select Job Location</option>
+    <option value="Bangalore">Bangalore</option>
+    <option value="Pune">Pune</option>
+    <option value="Chennai">Chennai</option>
+  </select>
+  
+    
+
+    <button type="submit" class="btn-btn-success" [disabled]="!form.form.valid" >Submit details</button>
+</div>
+<div *ngIf="!form.form.valid">
+  <p>Form Successfully submitted</p>
+</div>
+</div>
+</form>
+
+
+
